@@ -9,7 +9,7 @@ Course: CPRG-210-A --> */
 const form = document.getElementById('register-form');
 const submitButton = document.getElementById('submit-btn');
 const resetButton = document.getElementById('reset-btn');
-
+//do nothing
 // Function to display error message
 function showError(input, message) {
     const errorSpan = document.createElement('span');
