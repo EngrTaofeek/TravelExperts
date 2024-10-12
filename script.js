@@ -5,10 +5,49 @@ Author: Taofeek Oduola
 Date: 1st October 2024 
 Course: CPRG-210-A --> */
 
+const API_URL = 'http://localhost:3000/api';
 
+
+// Fetch all packages (GET)
+async function fetchAllPackages() {
+    try {
+        const response = await fetch(`${API_URL}/packages`);
+        const packages = await response.json();
+        console.log(packages);
+        const packagesTable = document.querySelector('#packagesTable tbody');
+        packagesTable.innerHTML = '';
+
+        packages.forEach(package => {
+            const row = `<tr>
+                <td>${package.PackageId}</td>
+                <td>${package.PkgName}</td>
+                <td>${package.PkgDesc}</td>
+            </tr>`;
+            packagesTable.innerHTML += row;
+        });
+    } catch (error) {
+        console.error('Error fetching packages:', error);
+    }
+}
+
+//Temporarily here for teammate to see snippet to be deleted later
+async function fetchPackage() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('packageId');
+        const response = await fetch(`${API_URL}/packages/${id}`);
+        const package = await response.json();
+        //sample below of how you can use data from json
+        // const ghh = document.getElementById('dummyId');
+        // ghh.innerHTML = package.PkgName;
+        //then use the package above to populate whatever data you want to
+    } catch (error) {
+        console.error('Error fetching packages:', error);
+    }
+}
 // An array of image,topic,description and url to populate carousels and hother functioalities
 const carouselData = [
-    { image: './images/destination.jpg', topic: 'Exotic Beach', description: 'Relax at the most beautiful beaches in Nice Paris. Experience a magical moment on a typical Côte Azur beach with breathtaking views over the Mediterranean Sea, a real invitation to relax and unwind ', url: 'https://www.explorenicecotedazur.com/en/explore/activities-nice-cote-dazur/plages/'},
+    { image: './images/destination.jpg', topic: 'Exotic Beach', description: 'Relax at the most beautiful beaches in Nice Paris. Experience a magical moment on a typical Côte Azur beach with breathtaking views over the Mediterranean Sea, a real invitation to relax and unwind ', url: 'https://www.explorenicecotedazur.com/en/explore/activities-nice-cote-dazur/plages/' },
     { image: './images/mountains.jpg', topic: 'Mountain Adventure', description: 'Experience thrilling adventures in the mountain.', url: 'https://mountainadventure.school/?gad_source=1&gclid=Cj0KCQjwr9m3BhDHARIsANut04YPqnX0eChUvQH-Z8-VdQrCHRSKDuyFX4NS-B1vCU7D9RvUwL-beTIaApEWEALw_wcB' },
     { image: './images/eiffel-tower.jpg', topic: 'Eiffel tower', description: 'Explore the city of love, paris.The tower is 330 metres (1,083 ft) tall,[9] about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest human-made structure in the world', url: 'https://en.wikipedia.org/wiki/Eiffel_Tower' },
     { image: './images/cairo.jpg', topic: 'Cairo', description: 'Discover iconic cities.Cairo is associated with ancient Egypt, as the Giza pyramid complex and the ancient cities of Memphis and Heliopolis are located in its geographical area. Located near the Nile Delta, the city first developed as Fustat following the Muslim conquest of Egypt next to an existing ancient Roman fortress, Babylon.', url: 'https://en.wikipedia.org/wiki/Cairo' },
@@ -103,8 +142,9 @@ document.getElementById('prevBtn').addEventListener('click', showPreviousItems);
 document.getElementById('nextBtn').addEventListener('click', showNextItems);
 
 // Display carousel items and the first set on load
-displayCarouselItems();
-updateCarousel();
+// displayCarouselItems();
+// updateCarousel();
+fetchAllPackages();
 
 
 var redirectWindow, myTimeout;
