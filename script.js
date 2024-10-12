@@ -111,9 +111,6 @@ function displayCarouselItems() {
         }, false);
     });
 
-    // Append the entire carousel item div to the carousel container
-    carouselContainer.appendChild(carouselItemDiv);
-
 }
 
 // Function to update the carousel sliding animation
@@ -142,8 +139,8 @@ document.getElementById('prevBtn').addEventListener('click', showPreviousItems);
 document.getElementById('nextBtn').addEventListener('click', showNextItems);
 
 // Display carousel items and the first set on load
-// displayCarouselItems();
-// updateCarousel();
+displayCarouselItems();
+updateCarousel();
 fetchAllPackages();
 
 
