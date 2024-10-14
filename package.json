@@ -2,10 +2,10 @@
   "name": "travelexperts",
   "version": "1.0.0",
   "description": "",
-  "main": "apis.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":  "nodemon api.js"
+    "start":  "nodemon app.js"
   },
   "keywords": [],
   "author": "",

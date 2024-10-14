@@ -1,0 +1,157 @@
+<!-- 
+    HTML,CSS AND JS Assignmet 
+    Author: Taofeek Oduola
+    Date: 1st October 2024
+    Course: CPRG-210-A
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teekay Tourism</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <script src="components/header-footer.js"></script>
+  </head>
+
+  <body>
+    <header class="header"></header>
+
+    <main>
+      <h1>Discover, Explore, and Experience with Teekay Travel Agency</h1>
+
+      <!-- Carousel Section -->
+      <section class="carousel">
+        <button id="prevBtn">&lt;</button>
+        <div id="carousel-container"></div>
+        <button id="nextBtn">&gt;</button>
+      </section>
+
+      <h3>Packages</h3>
+      <button id="fetchPackagesButton">Fetch Packages</button>
+      <table id="packagesTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Package Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <h2>Our services</h2>
+      <div class="flex-row">
+        <div class="service-card">
+          <h3>Flight reservation</h3>
+          <img
+            src="./images/plane.png"
+            alt="Flight reservation"
+            height="150"
+            width="150"
+          />
+          <ul>
+            <li>Book domestic and international flights with ease</li>
+            <li>Compare prices and schedules from various airlines</li>
+            <li>Secure online payment and instant confirmation</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Hotel reservation</h3>
+          <img
+            src="./images/hotel.png"
+            alt="Hotel reservation"
+            height="150"
+            width="150"
+          />
+          <ul>
+            <li>Choose from a wide range of hotels, apartments, and resorts</li>
+            <li>Get unbeatable rates and exclusive discounts</li>
+            <li>Filter options by location, price, and amenities</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Tour guide</h3>
+          <img
+            src="./images/tour-guide.png"
+            alt="Tour guide"
+            height="150"
+            width="150"
+          />
+          <ul>
+            <li>Explore new destinations with expert guides</li>
+            <li>Customized itineraries for individuals and groups</li>
+            <li>
+              Insider knowledge of local culture, history, and attractions
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Testimonial</h2>
+      <div class="flex-row">
+        <div class="testimonial-card">
+          <img
+            src="./images/man.jpeg"
+            alt="David Patel"
+            height="150"
+            width="150"
+          />
+          <p>
+            "Exceptional service! Emily at Teekay travel agency helped me plan
+            an unforgettable honeymoon in Bali. 5/5 stars!"
+          </p>
+          <h3>— David Patel</h3>
+        </div>
+        <div class="testimonial-card">
+          <img
+            src="./images/woman.jpeg"
+            alt="Sophia Rodriguez"
+            height="150"
+            width="150"
+          />
+          <p>
+            "Teekay travel agency exceeded my expectations! Their team helped me
+            navigate visa requirements and found me a luxury resort in Dubai."
+          </p>
+          <h3>— Sophia Rodriguez</h3>
+        </div>
+        <div class="testimonial-card">
+          <img
+            src="./images/samplewoman2.jpeg"
+            alt="David Patel"
+            height="150"
+            width="150"
+          />
+          <p>
+            "I've never had a smoother travel experience! They took care of
+            everything from flights to hotel reservations. Highly recommend
+            their tour guide services too! 10/10 would use again."
+          </p>
+          <h3>— Rachel Lee</h3>
+        </div>
+        <div class="testimonial-card">
+          <img
+            src="./images/sampleman1.jpeg"
+            alt="Sophia Rodriguez"
+            height="150"
+            width="150"
+          />
+          <p>
+            "As a solo traveler, I was hesitant to book with an agency. But
+            [Your Agency] made me feel completely at ease. Their personalized
+            itinerary and local insights made my trip to Japan truly
+            unforgettable."
+          </p>
+          <h3>— Mark Chen</h3>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer"></footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

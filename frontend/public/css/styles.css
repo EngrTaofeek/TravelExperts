@@ -13,19 +13,6 @@ body {
     flex-direction: column;
 }
 
-/* Header at top */
-header {
-    background-color: #0935A1;
-    color: white;
-    text-align: start;
-    padding: 10px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-}
-
 h1 , h2, h3, h4, h5, h6{
     color: #898686;
     font-family: Arial, Helvetica, sans-serif;
@@ -38,39 +25,6 @@ h3 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
 
-}
-
-header div {
-    display: flex;
-    align-items: center;
-}
-
-header h3 {
-    margin-left: 10px;
-    color: #898686;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-header .nav-text {
-    margin: 0;
-    padding: 0;
-}
-
-header a div {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-}
-
-header a img {
-    margin-bottom: 5px;
-    padding: 0;
-}
-
-header div:last-child {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
 }
 
 main {
@@ -196,12 +150,6 @@ p {
     font-size: medium;
 }
 
-.nav-text {
-    color: #ffff;
-    font-size: 5px;
-    margin-right: 30px;
-}
-
 /* Footer at bottom */
 footer {
     background-color: #0935A1;
@@ -234,14 +182,6 @@ footer div div {
     flex-direction: column;
 }
 
-/* Navigation Bar Styles */
-nav {
-    background-color: #0935A1;
-    padding: 1rem;
-    text-align: center;
-    width: 100%;
-}
-
 /* Agent Cards */
 .contact-list ul {
     list-style-type: none;
@@ -264,10 +204,6 @@ nav {
 
 }
 
-li:hover {
-    transform: translateY(-5px);
-}
-
 li img {
     border-radius: 100px;
     margin-bottom: 15px;
@@ -283,29 +219,7 @@ li strong {
     color: #1c5d99;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-/* Header Styles */
-header {
-    text-align: center;
-    background-color: #0935A1;
-    color: white;
-}
 
 /* General body styles */
 html,

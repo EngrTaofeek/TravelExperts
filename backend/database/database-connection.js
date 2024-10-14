@@ -6,7 +6,7 @@ const databaseConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'travelexperts',
-    password: 'mysqlpass'
+    password: 'root',
 });
 
 //exporting the connection for use in any js file
