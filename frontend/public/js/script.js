@@ -7,6 +7,12 @@ Course: CPRG-210-A --> */
 
 const API_URL = 'http://localhost:3000/api';
 
+const carouselInner = document.querySelector('.carousel-inner');
+const carouselIndicators = document.querySelector('.carousel-indicators');
+
+// Clear any previous items
+carouselInner.innerHTML = '';
+carouselIndicators.innerHTML = '';
 
 // Fetch all packages (GET)
 async function fetchAllPackages() {
@@ -16,15 +22,66 @@ async function fetchAllPackages() {
         console.log(packages);
         const packagesTable = document.querySelector('#packagesTable tbody');
         packagesTable.innerHTML = '';
+        packages.forEach((pkg, index) => {
+            // Create indicator item
+            const indicator = document.createElement('li');
+            indicator.setAttribute('data-bs-target', '#carouselExampleIndicators');
+            indicator.setAttribute('data-bs-slide-to', index);
+            if (index === 0) {
+                indicator.classList.add('active');
+            }
+            carouselIndicators.appendChild(indicator);
 
-        packages.forEach(package => {
-            const row = `<tr>
-                <td>${package.PackageId}</td>
-                <td>${package.PkgName}</td>
-                <td>${package.PkgDesc}</td>
-            </tr>`;
-            packagesTable.innerHTML += row;
+            // Create carousel item
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item');
+            if (index === 0) {
+                carouselItem.classList.add('active');
+            }
+
+            // Create the image element
+            const img = document.createElement('img');
+            img.classList.add('d-block', 'w-100');
+            img.src = "./images/destination1.jpg";
+            img.alt = `${pkg.name} image`;
+
+            // Create caption
+            const caption = document.createElement('div');
+            caption.classList.add('carousel-caption', 'd-none', 'd-md-block');
+            caption.innerHTML = `
+    <h5>${pkg.PkgName}</h5>
+    <p>${pkg.PkgDesc}</p>
+    <p>${pkg.PkgStartDate.split("T")[0]} to ${pkg.PkgEndDate.split("T")[0]}</p>
+    <h2>$ ${pkg.PkgBasePrice}</h2>
+  `;
+
+            // Create button (Bootstrap styled)
+            const viewButton = document.createElement('button');
+            viewButton.classList.add('btn', 'btn-primary', 'position-absolute', 'bottom-0', 'end-0', 'm-3');
+            viewButton.textContent = 'View Package';
+
+            // Add click listener to the button
+            viewButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent click event from triggering the carousel item listener
+                alert(`You clicked 'View Package' for: ${pkg.name}`);
+            });
+
+            // Add click listener to the carousel item
+            carouselItem.addEventListener('click', () => {
+                alert(`You clicked on: ${pkg.name}`);
+            });
+
+            // Append the button to the caption
+            caption.appendChild(viewButton);
+
+            // Append the image and caption to the carousel item
+            carouselItem.appendChild(img);
+            carouselItem.appendChild(caption);
+
+            // Append the carousel item to the carousel inner
+            carouselInner.appendChild(carouselItem);
         });
+
     } catch (error) {
         console.error('Error fetching packages:', error);
     }
@@ -64,7 +121,7 @@ const slideWidth = 320; // Width of each carousel item (including padding/margin
 
 // Function to populate the carousel
 function displayCarouselItems() {
-    const carouselContainer = document.getElementById("carousel-container");
+    const carouselContainer = document.getElementById("custom-carousel-container");
 
     // Clear the container before adding new items
     carouselContainer.innerHTML = '';
@@ -73,7 +130,7 @@ function displayCarouselItems() {
     carouselData.forEach((item) => {
         // Create the carousel item div
         const carouselItemDiv = document.createElement('div');
-        carouselItemDiv.classList.add('carousel-item');
+        carouselItemDiv.classList.add('custom-carousel-item');
 
         // Create and append the image
         const imgElement = document.createElement('img');
@@ -89,18 +146,7 @@ function displayCarouselItems() {
         // Create and append the description
         const descriptionElement = document.createElement('p');
         descriptionElement.textContent = item.description;
-        descriptionElement.style.display = 'none';
         // carouselItemDiv.appendChild(descriptionElement);
-
-        // Add mouseover and mouseout event listeners
-        imgElement.addEventListener('mouseover', function () {
-            descriptionElement.style.display = 'block';  // Show the description
-        });
-
-        imgElement.addEventListener('mouseout', function () {
-            descriptionElement.style.display = 'none';  // Hide the description
-        });
-
 
         carouselItemDiv.appendChild(descriptionElement);
 
@@ -135,8 +181,8 @@ function showNextItems() {
 }
 
 // Initialize carousel prev and nnext buttons
-document.getElementById('prevBtn').addEventListener('click', showPreviousItems);
-document.getElementById('nextBtn').addEventListener('click', showNextItems);
+document.getElementById('customPrevBtn').addEventListener('click', showPreviousItems);
+document.getElementById('customNextBtn').addEventListener('click', showNextItems);
 
 // Display carousel items and the first set on load
 displayCarouselItems();
@@ -204,7 +250,7 @@ function stopTimeOut() {
 
 //Populating the carousel that has been created in the index.html
 function updateCarousel() {
-    const carouselContainer = document.getElementById("carousel-container");
+    const carouselContainer = document.getElementById("custom-carousel-container");
     const slideWidth = 320; // Adjust this width to match the width of each carousel item
     carouselContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 }

@@ -13,7 +13,12 @@ body {
     flex-direction: column;
 }
 
-h1 , h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #898686;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -230,15 +235,14 @@ body {
     flex-direction: column;
 }
 
-
-
-/* Carousel Styles */
+/* Bootstrap Carousel Styles */
 .carousel {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px auto;
-    max-width: 1000px;
+    max-height: 70vh;
+    max-width: 90vw;
     overflow: hidden;
     /* Hide overflowing images */
     position: relative;
@@ -263,9 +267,9 @@ body {
 }
 
 .carousel-item img {
-    width: 300px;
+    width: 90vw;
     /* Image width */
-    height: 200px;
+    max-height: 70vh;
     /* Image height */
     object-fit: cover;
     border-radius: 10px;
@@ -283,6 +287,104 @@ body {
 
 /* Carousel Controls */
 .carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.carousel-caption {
+    color: darkgrey;
+    /* Set the text color to dark grey */
+}
+
+.carousel-caption h5 h2 {
+    font-weight: bold;
+    /* Make the first line bold */
+}
+
+.carousel-caption .btn {
+    z-index: 10;
+    /* Ensure the button is clickable above other content */
+}
+
+.carousel-indicators {
+    list-style: none;
+    /* Removes bullet points */
+    padding: 0;
+    /* Removes padding */
+    margin: 0;
+    /* Removes margin */
+}
+
+.carousel-indicators .sr-only {
+    display: none;
+    /* Hides the text or labels */
+}
+
+.carousel-indicators li::after {
+    content: none;
+    display: none;
+    /* Removes numbers or dots that might appear */
+}
+
+/* Custom Carousel Styles */
+.custom-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 1000px;
+    overflow: hidden;
+    /* Hide overflowing images */
+    position: relative;
+}
+
+#custom-carousel-container {
+    display: flex;
+    flex-direction: row;
+    /* Horizontally align items */
+    transition: transform 0.5s ease-in-out;
+}
+
+.custom-carousel-item {
+    display: flex;
+    flex-direction: column;
+    /* Vertical layout for image, topic, description */
+    align-items: center;
+    /* Center the content */
+    width: 300px;
+    /* Set width of each carousel item */
+    margin-right: 20px;
+}
+
+.custom-carousel-item img {
+    width: 300px;
+    /* Image width */
+    height: 200px;
+    /* Image height */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.custom-carousel-item h3 {
+    margin: 10px 0 5px;
+    color: skyblue;
+}
+
+.custom-carousel-item p {
+    color: #666;
+    text-align: center;
+}
+
+/* Carousel Controls */
+.custom-carousel button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -309,11 +411,11 @@ body {
     display: block;
 }
 
-#prevBtn {
+#customPrevBtn {
     left: 0;
 }
 
-#nextBtn {
+#customNextBtn {
     right: 0;
 }
 

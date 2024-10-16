@@ -19,6 +19,9 @@ let header = `<nav class="navbar navbar-expand-lg">
                     >
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="index.html#carouselExampleIndicators">PACKAGES</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="contact.html">CONTACT US</a>
                 </li>
                 <li class="nav-item">
