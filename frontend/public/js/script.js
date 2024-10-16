@@ -20,8 +20,6 @@ async function fetchAllPackages() {
         const response = await fetch(`${API_URL}/packages`);
         const packages = await response.json();
         console.log(packages);
-        const packagesTable = document.querySelector('#packagesTable tbody');
-        packagesTable.innerHTML = '';
         packages.forEach((pkg, index) => {
             // Create indicator item
             const indicator = document.createElement('li');
