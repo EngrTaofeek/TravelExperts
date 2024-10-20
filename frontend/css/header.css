@@ -5,7 +5,7 @@ header {
   padding: 0px 20px;
   position: fixed;
   top: 0px;
-  width: 97vw;
+  width: 100%;
   z-index: 100;
 }
 
@@ -87,4 +87,10 @@ footer {
 .header-container {
   display: flex;
   align-items: center;
+}
+
+.nav-link.active {
+  color: #5e7ced !important; 
+  font-weight: bold;
+  
 }

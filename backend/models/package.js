@@ -1,14 +1,11 @@
 const databaseInstance = require("../database/database-connection");
 
 class Package {
-  static getAll() {
-    return new Promise((resolve, reject) => {
-      const sql = "SELECT * FROM packages";
-      databaseInstance.query(sql, (err, result) => {
-        if (err) reject(err);
-        resolve(result);
-      });
-    });
+  static async getAll() {
+    console.log("get allllll");
+    const sql = "SELECT * FROM packages";
+    const [result] = await databaseInstance.query(sql);
+    return result
   }
 
   static getById(id) {

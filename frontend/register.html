@@ -1,0 +1,179 @@
+<!-- 
+    HTML,CSS AND JS Assignmet 
+    Author: Taofeek Oduola
+    Date: 1st October 2024
+    Course: CPRG-210-A
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Tales | Register</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <script src="components/header-footer.js"></script>
+  </head>
+
+  <body class="registration-body">
+    <header class="header"></header>
+
+    <main class="container">
+      <div class="row justify-content-center" style="padding-bottom: 100px">
+        <div class="col-md-8">
+          <h3 class="text-center mb-4 fw-bold">
+            Register to start enjoying your trips
+          </h3>
+          <form id="register-form" class="needs-validation" novalidate>
+            <div class="row g-3">
+              <!-- First Name -->
+              <div class="col-md-6">
+                <label for="firstname" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstname"
+                  name="firstname"
+                  required
+                />
+                <div class="form-text">
+                  Enter your first name (letters only).
+                </div>
+              </div>
+
+              <!-- Last Name -->
+              <div class="col-md-6">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastname"
+                  name="lastname"
+                  required
+                />
+                <div class="form-text">
+                  Enter your last name (letters only).
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                />
+                <div class="form-text">
+                  Enter a valid email address (e.g., name@example.com).
+                </div>
+              </div>
+
+              <!-- Age -->
+              <div class="col-md-6">
+                <label for="age" class="form-label">Age</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="age"
+                  name="age"
+                  required
+                />
+                <div class="form-text">Enter your age (numbers only).</div>
+              </div>
+
+              <!-- Password -->
+              <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="min of 8 characters"
+                  required
+                />
+                <div class="form-text">
+                  Password must be at least 8 characters.
+                </div>
+              </div>
+
+              <!-- City -->
+              <div class="col-md-6">
+                <label for="city" class="form-label">City</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  name="city"
+                  required
+                />
+                <div class="form-text">Enter the city where you reside.</div>
+              </div>
+
+              <!-- Province -->
+              <div class="col-md-6">
+                <label for="province" class="form-label">Province</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="province"
+                  name="province"
+                  required
+                />
+                <div class="form-text">Enter the province you live in.</div>
+              </div>
+
+              <!-- Postal Code -->
+              <div class="col-md-6">
+                <label for="postalcode" class="form-label">Postal Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postalcode"
+                  name="postalcode"
+                  required
+                />
+                <div class="form-text">
+                  Enter your postal code (e.g., 12345).
+                </div>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="col-md-6">
+                <label for="mobile" class="form-label">Phone Number</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="mobile"
+                  name="mobile"
+                  required
+                />
+                <div class="form-text">Enter your 10-digit phone number.</div>
+              </div>
+
+              <!-- Submit and Reset Buttons -->
+              <div class="col-12 mt-4">
+                <button
+                  type="submit"
+                  id="submit-btn"
+                  class="btn btn-primary me-2"
+                >
+                  Submit
+                </button>
+                <button type="reset" id="reset-btn" class="btn btn-secondary">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"></footer>
+
+    <script src="js/register-script.js"></script>
+  </body>
+</html>
