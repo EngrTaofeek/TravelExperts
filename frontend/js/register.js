@@ -24,6 +24,40 @@ function clearErrors() {
   errors.forEach((error) => error.remove());
 }
 
+async function populateAgentDropdown() {
+  try {
+    const response = await fetch("/api/agents");
+    const agents = await response.json();
+    const dropdown = document.getElementById("agentId");
+    agents.forEach((agent) => {
+      const option = document.createElement("option");
+      option.value = agent.AgentId;
+      option.textContent = `${agent.AgtFirstName} ${agent.AgtLastName}`;
+      dropdown.appendChild(option);
+    });
+  } catch (error) {
+    console.error("Error fetching agents:", error);
+  }
+}
+
+// Get the form fields data
+function getFormData() {
+  const formData = {
+    firstname: document.getElementById("firstname").value,
+    lastname: document.getElementById("lastname").value,
+    address: document.getElementById("address").value,
+    city: document.getElementById("city").value,
+    postalcode: document.getElementById("postalcode").value,
+    province: document.getElementById("province").value,
+    country: document.getElementById("country").value,
+    email: document.getElementById("email").value,
+    agentId: document.getElementById("agentId").value,
+    busphone: document.getElementById("busphone").value,
+    homephone: document.getElementById("homephone").value,
+  };
+  return formData;
+}
+
 // Validation function for each field
 function validateForm() {
   clearErrors(); // Clear previous errors
@@ -54,24 +88,16 @@ function validateForm() {
     isValid = false;
   }
 
-  // Age validation
-  const age = document.getElementById("age");
-  if (age.value.trim() === "" || isNaN(age.value) || parseInt(age.value) <= 0) {
-    showError(age, "Please enter a valid age.");
-    isValid = false;
-  }
-
-  // Password validation
-  const password = document.getElementById("password");
-  if (password.value.trim() === "" || password.value.length < 8) {
-    showError(password, "Password must be at least 8 characters.");
-    isValid = false;
-  }
-
   // City validation
   const city = document.getElementById("city");
   if (city.value.trim() === "") {
     showError(city, "City is required.");
+    isValid = false;
+  }
+
+  const address = document.getElementById("address");
+  if (city.value.trim() === "") {
+    showError(address, "Address is required.");
     isValid = false;
   }
 
@@ -90,7 +116,7 @@ function validateForm() {
   }
 
   // Phone Number validation
-  const phoneNumber = document.getElementById("mobile");
+  const phoneNumber = document.getElementById("busphone");
   const phonePattern = /^[0-9]{10}$/;
   if (phoneNumber.value.trim() === "") {
     showError(phoneNumber, "Phone Number is required.");
@@ -104,19 +130,46 @@ function validateForm() {
 }
 
 // Event handler for the submit button
-submitButton.addEventListener("click", function (event) {
-  // Validate form inputs
+submitButton.addEventListener("click", async function (event) {
+  console.log("submit button called!!");
+  event.preventDefault();
   const isFormValid = validateForm();
 
-  // If the form is invalid, prevent submission
   if (!isFormValid) {
-    event.preventDefault();
-  } else {
-    // Show confirmation dialog
-    const isConfirmed = confirm("Are you sure you want to submit the form?");
-    if (!isConfirmed) {
-      event.preventDefault(); // Cancel submission
+    console.log("form invalid");
+    return;
+  }
+
+  // Show confirmation dialog
+  const isConfirmed = confirm("Are you sure you want to submit the form?");
+  if (!isConfirmed) {
+    console.log("Stop if user cancels");
+    return; 
+  }
+  // If we get here, the form is valid and the user confirmed submission
+  try {
+    const formData = getFormData();
+    console.log("customer data register.js: ", formData);
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert(result.message);
+      console.log("result success: ", result.message);
+      form.reset(); // Reset the form
+    } else {
+      alert("Registration failed: " + result.message);
     }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred. Please try again later.");
   }
 });
 
@@ -136,44 +189,5 @@ resetButton.addEventListener("click", function (event) {
     form.reset();
   }
 });
-// Get the form fields
-const fields = {
-  firstname: document.getElementById("firstname"),
-  lastname: document.getElementById("lastname"),
-  email: document.getElementById("email"),
-  age: document.getElementById("age"),
-  password: document.getElementById("password"),
-  city: document.getElementById("city"),
-  province: document.getElementById("province"),
-  postalcode: document.getElementById("postalcode"),
-  mobile: document.getElementById("mobile"),
-};
 
-// Get the description paragraphs
-const descriptions = {
-  firstname: document.getElementById("first-name-desc"),
-  lastname: document.getElementById("last-name-desc"),
-  email: document.getElementById("email-desc"),
-  age: document.getElementById("age-desc"),
-  password: document.getElementById("password-desc"),
-  city: document.getElementById("city-desc"),
-  province: document.getElementById("province-desc"),
-  postalcode: document.getElementById("postalcode-desc"),
-  mobile: document.getElementById("mobile-desc"),
-};
-
-// Function to show the respective description
-function showDescription(field) {
-  descriptions[field].classList.add("active"); // Show the description
-}
-
-// Function to hide all descriptions
-function hideDescription(field) {
-  descriptions[field].classList.remove("active"); // Hide the description
-}
-
-// Attach event listeners for each input field
-for (let field in fields) {
-  fields[field].addEventListener("focus", () => showDescription(field));
-  fields[field].addEventListener("blur", () => hideDescription(field));
-}
+document.addEventListener("DOMContentLoaded", populateAgentDropdown);
