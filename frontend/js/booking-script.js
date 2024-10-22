@@ -142,6 +142,8 @@ async function submitBooking() {
         if (response.ok) {
             // Handle success response
             alert('Booking submitted successfully!');
+
+            window.location.href = `/thank-you-booking.html?bookingCode=${bookingNo}`;
             console.log(result);
         } else {
             // Handle error response

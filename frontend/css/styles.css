@@ -79,7 +79,8 @@ h3 {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Semi-transparent background */
 }
 
 .fade {
@@ -94,8 +95,9 @@ h3 {
   from {
     opacity: 0.4;
   }
+
   to {
-    opacity: 1; 
+    opacity: 1;
   }
 }
 
@@ -439,12 +441,38 @@ li strong {
     margin-bottom: 1rem;
   }
 }
+
 @media (max-width: 767.98px) {
   .card {
     margin-bottom: 1rem;
   }
 }
 
+/*  Stlyes for single page cover page webpage, the webpage is not expected to scroll and have everything fit in one screen */
+.cover-message {
+  padding: 2rem 0;
+  background-color: #fff;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.cover-message h2 {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.cover-message p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 1rem 20%;
+}
+
+.cover-message .cover-image {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+}
 
 /* Registration page tabs */
 
