@@ -11,6 +11,8 @@ exports.getAllPackages = async (req, res) => {
 
 exports.getPackageById = async (req, res) => {
   try {
+
+    console.log(`controller id ${req.params.id}`);
     const package = await Package.getById(req.params.id);
     if (package) {
       res.json(package);
