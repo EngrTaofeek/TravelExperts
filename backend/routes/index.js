@@ -12,7 +12,6 @@ const options = { 'root': path.join(__dirname, 'frontend') };
 router.post('/add-booking', bookingController.addBooking);
 
 const registrationController = require("../controllers/registrationController");
-const options = {'root': path.join(__dirname, 'frontend')};
 
 
 router.get("/", (req, res) => {
