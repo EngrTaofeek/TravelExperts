@@ -144,7 +144,7 @@ submitButton.addEventListener("click", async function (event) {
   const isConfirmed = confirm("Are you sure you want to submit the form?");
   if (!isConfirmed) {
     console.log("Stop if user cancels");
-    return; 
+    return;
   }
   // If we get here, the form is valid and the user confirmed submission
   try {
@@ -161,9 +161,10 @@ submitButton.addEventListener("click", async function (event) {
     const result = await response.json();
 
     if (result.success) {
-      alert(result.message);
-      console.log("result success: ", result.message);
-      form.reset(); // Reset the form
+      // alert(result.message);
+      // console.log("result success: ", result.message);
+      // form.reset(); // Reset the form
+      window.location.href = `/thank-you-registration.html`;
     } else {
       alert("Registration failed: " + result.message);
     }
