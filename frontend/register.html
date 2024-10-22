@@ -33,11 +33,12 @@
                   type="text"
                   class="form-control"
                   id="firstname"
-                  name="firstname"
+                  name="CustFirstName"
                   required
+                  maxlength="25"
                 />
                 <div class="form-text">
-                  Enter your first name (letters only).
+                  Enter your first name (letters only, max 25 characters).
                 </div>
               </div>
 
@@ -48,55 +49,28 @@
                   type="text"
                   class="form-control"
                   id="lastname"
-                  name="lastname"
+                  name="CustLastName"
                   required
+                  maxlength="25"
                 />
                 <div class="form-text">
-                  Enter your last name (letters only).
+                  Enter your last name (letters only, max 25 characters).
                 </div>
               </div>
 
-              <!-- Email -->
-              <div class="col-md-6">
-                <label for="email" class="form-label">Email</label>
+              <!-- Address -->
+              <div class="col-md-12">
+                <label for="address" class="form-label">Address</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="email"
-                  name="email"
+                  id="address"
+                  name="CustAddress"
                   required
+                  maxlength="75"
                 />
                 <div class="form-text">
-                  Enter a valid email address (e.g., name@example.com).
-                </div>
-              </div>
-
-              <!-- Age -->
-              <div class="col-md-6">
-                <label for="age" class="form-label">Age</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="age"
-                  name="age"
-                  required
-                />
-                <div class="form-text">Enter your age (numbers only).</div>
-              </div>
-
-              <!-- Password -->
-              <div class="col-md-6">
-                <label for="password" class="form-label">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  name="password"
-                  placeholder="min of 8 characters"
-                  required
-                />
-                <div class="form-text">
-                  Password must be at least 8 characters.
+                  Enter your full address (max 75 characters).
                 </div>
               </div>
 
@@ -107,10 +81,13 @@
                   type="text"
                   class="form-control"
                   id="city"
-                  name="city"
+                  name="CustCity"
                   required
+                  maxlength="50"
                 />
-                <div class="form-text">Enter the city where you reside.</div>
+                <div class="form-text">
+                  Enter the city where you reside (max 50 characters).
+                </div>
               </div>
 
               <!-- Province -->
@@ -120,10 +97,13 @@
                   type="text"
                   class="form-control"
                   id="province"
-                  name="province"
+                  name="CustProv"
                   required
+                  maxlength="2"
                 />
-                <div class="form-text">Enter the province you live in.</div>
+                <div class="form-text">
+                  Enter the province code (2 characters, e.g., AB for Alberta).
+                </div>
               </div>
 
               <!-- Postal Code -->
@@ -133,25 +113,90 @@
                   type="text"
                   class="form-control"
                   id="postalcode"
-                  name="postalcode"
+                  name="CustPostal"
                   required
+                  maxlength="7"
                 />
                 <div class="form-text">
-                  Enter your postal code (e.g., 12345).
+                  Enter your postal code (e.g., T2P 2G8).
                 </div>
               </div>
 
-              <!-- Phone Number -->
+              <!-- Country -->
               <div class="col-md-6">
-                <label for="mobile" class="form-label">Phone Number</label>
+                <label for="country" class="form-label"
+                  >Country (Optional)</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="country"
+                  name="CustCountry"
+                  maxlength="25"
+                />
+                <div class="form-text">
+                  Enter your country (optional, max 25 characters).
+                </div>
+              </div>
+
+              <!-- Business Phone -->
+              <div class="col-md-6">
+                <label for="busphone" class="form-label">Business Phone</label>
                 <input
                   type="tel"
                   class="form-control"
-                  id="mobile"
-                  name="mobile"
+                  id="busphone"
+                  name="CustBusPhone"
                   required
+                  maxlength="20"
                 />
-                <div class="form-text">Enter your 10-digit phone number.</div>
+                <div class="form-text">
+                  Enter your business phone number (max 20 characters).
+                </div>
+              </div>
+
+              <!-- Home Phone -->
+              <div class="col-md-6">
+                <label for="homephone" class="form-label"
+                  >Home Phone (Optional)</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="homephone"
+                  name="CustHomePhone"
+                  maxlength="20"
+                />
+                <div class="form-text">
+                  Enter your home phone number (optional, max 20 characters).
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="CustEmail"
+                  required
+                  maxlength="50"
+                />
+                <div class="form-text">
+                  Enter a valid email address (max 50 characters).
+                </div>
+              </div>
+
+              <!-- Referred Agent Dropdown -->
+              <div class="col-md-6">
+                <label for="agentId" class="form-label"
+                  >Referred Agent (Optional)</label
+                >
+                <select class="form-select" id="agentId" name="AgentId">
+                  <option value="">Select an agent</option>
+                  <!-- Options will be populated dynamically -->
+                </select>
               </div>
 
               <!-- Submit and Reset Buttons -->
@@ -172,8 +217,9 @@
         </div>
       </div>
     </main>
+
     <footer class="footer"></footer>
 
-    <script src="js/register-script.js"></script>
+    <script src="js/register.js"></script>
   </body>
 </html>
