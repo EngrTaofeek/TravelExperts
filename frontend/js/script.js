@@ -19,8 +19,9 @@ async function fetchAllPackages() {
   try {
     const response = await fetch(`${API_URL}/packages`);
     const packages = await response.json();
-    
+
     packages.forEach((pkg, index) => {
+      const packageId = pkg.PackageId;
       // Create indicator item
       const indicator = document.createElement("li");
       indicator.setAttribute("data-bs-target", "#carouselExampleIndicators");
@@ -40,7 +41,7 @@ async function fetchAllPackages() {
       // Create the image element
       const img = document.createElement("img");
       img.classList.add("d-block", "w-100");
-      img.src = "./images/destination1.jpg";
+      img.src = pkg.imagePath;
       img.alt = `${pkg.name} image`;
 
       // Create caption
@@ -48,9 +49,9 @@ async function fetchAllPackages() {
       caption.classList.add("carousel-caption", "d-none", "d-md-block");
       caption.innerHTML = `
     <h5>${pkg.PkgName}</h5>
-    <p>${pkg.PkgDesc}</p>
-    <p>${pkg.PkgStartDate.split("T")[0]} to ${pkg.PkgEndDate.split("T")[0]}</p>
-    <h2>$ ${pkg.PkgBasePrice}</h2>
+    <p style="color: #ffff;">${pkg.PkgDesc}</p>
+    <p style="color: #ffff;">${pkg.PkgStartDate.split("T")[0]} to ${pkg.PkgEndDate.split("T")[0]}</p>
+    <h2>$ ${pkg.PkgBasePrice.split(".")[0]}</h2>
   `;
 
       // Create button (Bootstrap styled)
@@ -63,17 +64,16 @@ async function fetchAllPackages() {
         "end-0",
         "m-3"
       );
+      viewButton.style.backgroundColor = "#041441";
       viewButton.textContent = "View Package";
 
       // Add click listener to the button
       viewButton.addEventListener("click", (e) => {
         e.stopPropagation(); // Prevent click event from triggering the carousel item listener
-        alert(`You clicked 'View Package' for: ${pkg.name}`);
-      });
+        // Assuming the `pkg` object has a unique identifier like `pkg.id`
+        // Redirect to booking page
+        window.location.href = `/booking.html?packageId=${packageId}`;
 
-      // Add click listener to the carousel item
-      carouselItem.addEventListener("click", () => {
-        alert(`You clicked on: ${pkg.name}`);
       });
 
       // Append the button to the caption
@@ -104,7 +104,7 @@ function showSlides() {
     slides[i].style.display = "none";
   }
   slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
+  if (slideIndex > slides.length) { slideIndex = 1 }
+  slides[slideIndex - 1].style.display = "block";
   setTimeout(showSlides, 3000); // Change image every 2 seconds
 }
