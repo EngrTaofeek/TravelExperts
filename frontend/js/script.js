@@ -64,7 +64,6 @@ async function fetchAllPackages() {
         "end-0",
         "m-3"
       );
-      viewButton.style.backgroundColor = "#041441";
       viewButton.textContent = "View Package";
 
       // Add click listener to the button
