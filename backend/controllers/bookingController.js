@@ -3,9 +3,9 @@ const databaseInstance = require("../database/database-connection");
 
 // Controller to handle inserting a booking
 const addBooking = async (req, res) => {
-    const { bookingDate, bookingNo, travelerCount, customerId, tripTypeId, packageId } = req.body; // Get values from request body
+    const { bookingDate, bookingNo, travelerCount, tripTypeId, packageId, email } = req.body; // Get values from request body
 
-    if (!bookingDate || !bookingNo || !travelerCount || !customerId || !tripTypeId || !packageId) {
+    if (!bookingDate || !bookingNo || !travelerCount || !email || !tripTypeId || !packageId) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -15,8 +15,8 @@ const addBooking = async (req, res) => {
 
         // SQL query to insert a new booking
         const sql = `
-            INSERT INTO bookings (BookingDate, BookingNo, TravelerCount, TripTypeId, PackageId) 
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO bookings (BookingDate, BookingNo, TravelerCount, TripTypeId, PackageId, Email) 
+            VALUES (?, ?, ?, ?, ?, ?)
         `;
 
         // Execute the query with the provided values
@@ -25,7 +25,8 @@ const addBooking = async (req, res) => {
             bookingNo,
             travelerCount,
             tripTypeId,
-            packageId
+            packageId,
+            email
         ]);
 
         // Return a success message with the result
