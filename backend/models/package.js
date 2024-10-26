@@ -23,8 +23,14 @@ class Package {
         await databaseInstance.query(`
                 ALTER TABLE packages 
                 ADD imagePath VARCHAR(255);
+                ADD COLUMN Email VARCHAR(255) 
             `);
         console.log("imagePath column added successfully.");
+        //insert email column to bookings table
+        await databaseInstance.query(`
+                ALTER TABLE bookings 
+                ADD COLUMN Email VARCHAR(255) 
+            `);
 
         for (let i = 0; i < imagePaths.length; i++) {
           const sql = "UPDATE packages SET imagePath = ? WHERE PackageId = ?";

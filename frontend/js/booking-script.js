@@ -16,30 +16,6 @@ async function fetchPackage() {
     // Log the packageId to verify
     console.log('Package ID:', packageId);
     fetchPackageById(packageId);
-    // try {
-    //     const urlParams = new URLSearchParams(window.location.search);
-    //     const id = urlParams.get('packageId');
-    //     console.log(` log value ${id}`);
-    //     const response = await fetch(`${API_URL}/packages/${id}`);
-    //     console.log(`error ${response}`);
-    //     const package = await response.json();
-
-    //     // Destructure the package data
-    //     const { PkgDesc: description, imagePath: imagesrc, PkgBasePrice: price, PkgStartDate: startDate, PkgEndDate: endDate, PkgName: packageName } = package;
-
-    //     // Update the HTML form inputs with the fetched data
-    //     document.getElementById('description').value = description;
-    //     document.getElementById('price').value = `$${price}`;
-    //     document.getElementById('start-date').value = startDate;
-    //     document.getElementById('end-date').value = endDate;
-    //     document.getElementById('package-name').value = packageName;
-
-    //     // Update the image source if applicable
-    //     // document.querySelector('.booking-image img').src = imagesrc;
-
-    // } catch (error) {
-    //     console.error('Error fetching package:', error);
-    // }
 }
 
 async function fetchPackageById(packageId) {
@@ -58,7 +34,8 @@ async function fetchPackageById(packageId) {
         document.getElementById('price').value = `$${packageData.PkgBasePrice.split(".")[0]}`;
         document.getElementById('start-date').value = packageData.PkgStartDate.split("T")[0];
         document.getElementById('end-date').value = packageData.PkgEndDate.split("T")[0];
-        document.getElementById('package-name').value = packageData.PkgName;
+        document.getElementById('package-name').value = packageData.PkgName; 
+        document.getElementById('booking-image').src = packageData.imagePath;
 
     } catch (error) {
         console.error('Error fetching package by ID:', error);
@@ -95,19 +72,19 @@ async function submitBooking() {
     // Gather form data
     const bookingDate = document.getElementById('booking-date').value;
     const travelerCount = document.getElementById('num-travelers').value;
+    const email = document.getElementById('email').value;
     const tripTypeId = selectedTripTypeId;
     const packageId = fetchedPackage.PackageId;
 
     // Add additional data like bookingNo and customerId
     const bookingNo = generateBookingNo(); // Function to generate a booking number (e.g., a random number)
-    const customerId = getCustomerId(); // Function to get the customer ID (e.g., from a logged-in user session)
+    
 
     console.log(`${bookingDate}`);
     console.log(`${travelerCount}`);
     console.log(`${tripTypeId}`);
     console.log(`${packageId}`);
     console.log(`${bookingNo}`);
-    console.log(`${customerId}`);
     // const bookingDate = "2024-10-21";
     // const travelerCount = 2;
     // const tripTypeId = "B";
@@ -122,9 +99,9 @@ async function submitBooking() {
         bookingDate,
         bookingNo,
         travelerCount,
-        customerId,
         tripTypeId,
-        packageId
+        packageId,
+        email
     };
 
 
@@ -156,16 +133,10 @@ async function submitBooking() {
     }
 };
 
-// Example functions to generate bookingNo and get customerId
+// Function to generate bookingNo
 function generateBookingNo() {
     return 'GR6' + Math.floor(Math.random() * 10000); // Simple random number generation
 }
-
-function getCustomerId() {
-    // Example logic, you can fetch from session or other data sources
-    return 123; // Assume 123 is the logged-in customer ID
-}
-
 
 // Form validation function
 async function validateForm() {
@@ -175,6 +146,18 @@ async function validateForm() {
 
     // Clear previous error messages
     document.getElementById('traveler-error').textContent = '';
+
+    const email = document.getElementById("email");
+    const emailError = document.getElementById('email-error');
+    // Email Validation
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (email.value.trim() === "") {
+        emailError.textContent = 'Please enter a valid email address.';
+        isValid = false;
+    } else if (!emailPattern.test(email.value.trim())) {
+        emailError.textContent = 'Please enter a valid email address.';
+        isValid = false;
+    }
 
     // Validate number of travelers
     if (numTravelers === '' || numTravelers < 1) {

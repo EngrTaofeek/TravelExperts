@@ -54,7 +54,7 @@
         <div class="row">
             <!-- Booking Image Section -->
             <div class="col-md-6 booking-image">
-                <img src="./images/hawaii.jpg" alt="Booking Image">
+                <img id="booking-image" src="./images/hawaii.jpg" alt="Booking Image">
             </div>
 
             <!-- Booking Details Section -->
@@ -104,6 +104,13 @@
                     <input type="number" id="num-travelers" class="form-control" min="1"
                         placeholder="Enter number of travelers">
                     <div id="traveler-error" class="text-danger"></div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control"  placeholder="Enter your email address">
+                    <div id="email-error" class="text-danger"></div>
                 </div>
 
                 <!-- Type of Trip (Dropdown) -->
